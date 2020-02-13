@@ -4,12 +4,29 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf dist",
+    "lint": "eslint . --ext .ts",
+    "compile": "tsc && tsc --allowJs false --declaration true",
+    "build": "npm run lint && npm run compile",
+    "full-build": "npm run clean && npm run build",
+    "unit-test": "jest --config=jest.json --roots=spec",
+    "test": "npm run unit-test"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^25.1.2",
+    "@types/node": "^13.7.1",
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
+    "eslint": "^6.8.0",
+    "jest": "^25.1.0",
+    "ts-jest": "^25.2.0",
+    "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "aws-sdk": "^2.618.0",
+    "uuid": "^3.4.0"
+  }
 }

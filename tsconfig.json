@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "dist/",
+    "typeRoots": [
+      "node_modules/@types",
+      "typings"
+    ],
+    "pretty": true,
+    "strictNullChecks": false,
+    "allowJs": false,
+    "lib": [
+      "dom",
+      "es2017"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "spec"
+  ]
+}
