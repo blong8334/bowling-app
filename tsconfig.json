@@ -14,7 +14,8 @@
     "lib": [
       "dom",
       "es2017"
-    ]
+    ],
+    "resolveJsonModule": true
   },
   "exclude": [
     "node_modules",

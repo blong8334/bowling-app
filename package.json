@@ -10,7 +10,8 @@
     "build": "npm run lint && npm run compile",
     "full-build": "npm run clean && npm run build",
     "unit-test": "jest --config=jest.json --roots=spec",
-    "test": "npm run unit-test"
+    "test": "npm run unit-test",
+    "script": "ts-node src/index.ts"
   },
   "author": "",
   "license": "ISC",

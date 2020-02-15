@@ -8,16 +8,16 @@ const options = {
   logger: console.log.bind(console),
 };
 const textract = new Textract(options);
-const imagePath = path.resolve(__dirname, 'test.png');
-const resultsPath = path.resolve(__dirname, 'results.json');
+const resultsPath = path.resolve(__dirname, '../data/results.json');
 
-function getImage(): Buffer {
+function getImage(imageName: string): Buffer {
+  const imagePath = path.resolve(__dirname, '../data', imageName);
   const image = fs.readFileSync(imagePath);
   return Buffer.from(image);
 }
 
-async function getDocumentText(Bytes: Buffer): Promise<void> {
-  const params = { Document: { Bytes }, FeatureTypes: ['TABLES', 'FORMS'] };
+async function getDocumentText(Bytes: Buffer): Promise<{}> {
+  const params = { Document: { Bytes }, FeatureTypes: ['TABLES'] };
   const results = await new Promise((resolve, reject) => {
     textract.analyzeDocument(params, (err, data) => {
       if (err) {
@@ -27,14 +27,14 @@ async function getDocumentText(Bytes: Buffer): Promise<void> {
     });
   });
   fs.writeFileSync(resultsPath, JSON.stringify(results, null, 2));
+  return results;
 }
 
-(async function main(): Promise<void> {
+export function getText(imageName: string): Promise<{}> {
   try {
-    const image = getImage();
-    await getDocumentText(image);
-    console.log(`Wrote results to ${resultsPath}`);
+    const image = getImage(imageName);
+    return getDocumentText(image);
   } catch (err) {
     console.error(err);
   }
-})();
+}
